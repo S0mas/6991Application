@@ -7,7 +7,6 @@
 #include "../WizardFramework/Mock/include/HardwareConnectorMock.h"
 #include <QTcpServer>
 
-
 QTcpSocket *clientConnection = nullptr;
 
 void write(QTcpServer* server) {
