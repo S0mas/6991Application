@@ -61,14 +61,14 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <LanguageStandard>stdcpplatest</LanguageStandard>
-      <AdditionalIncludeDirectories>$(Qt_INCLUDEPATH_);..\WizardFramework\Common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\ScpiInterpreter;$(Qt_INCLUDEPATH_);..\WizardFramework\Common\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>QWT_DLL;$(Qt_DEFINES_);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>$(Qt_LIBS_);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ScpiInterpreter.lib;$(Qt_LIBS_);%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\win64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <QtMoc>
@@ -106,6 +106,7 @@
     <ClCompile Include="..\WizardFramework\Common\src\Device6991\gui\ScanRateView.cpp" />
     <ClCompile Include="..\WizardFramework\Common\src\Device6991\gui\StatusView.cpp" />
     <ClCompile Include="..\WizardFramework\Common\src\Device6991\gui\TestsView.cpp" />
+    <ClCompile Include="..\WizardFramework\Common\src\Device6991\Registers6991.cpp" />
     <ClCompile Include="..\WizardFramework\Common\src\gui\EnumSelector.cpp" />
     <ClCompile Include="..\WizardFramework\Common\src\gui\TwoStateButton.cpp" />
     <ClCompile Include="..\WizardFramework\Common\src\ScpiDevice.cpp" />
@@ -113,6 +114,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\WizardFramework\Common\include\Device6991\Registers6991.h" />
     <QtMoc Include="..\WizardFramework\Common\include\Device6991\gui\AcquisitionStartModeView.h" />
     <QtMoc Include="..\WizardFramework\Common\include\Device6991\gui\AcquisitionStopModeView.h" />
     <QtMoc Include="..\WizardFramework\Common\include\Device6991\gui\Controller6991.h" />
@@ -120,20 +122,19 @@
     <QtMoc Include="..\WizardFramework\Common\include\Device6991\gui\ScanRateView.h" />
     <QtMoc Include="..\WizardFramework\Common\include\Device6991\gui\StatusView.h" />
     <QtMoc Include="..\WizardFramework\Common\include\Device6991\gui\TestsView.h" />
-    <QtMoc Include="..\WizardFramework\Common\include\Device6991\AbstractDeviceXX.h" />
+    <QtMoc Include="..\WizardFramework\Common\include\Device6991\HardwareMock6991.h" />
     <QtMoc Include="..\WizardFramework\Common\include\AbstractDataResource.h" />
     <QtMoc Include="..\WizardFramework\Common\include\AbstractDevice.h" />
     <QtMoc Include="..\WizardFramework\Common\include\AbstractHardwareConnector.h" />
     <ClInclude Include="..\WizardFramework\Common\include\ChannelsIF.h" />
     <ClInclude Include="..\WizardFramework\Common\include\CustomTransitions.h" />
     <ClInclude Include="..\WizardFramework\Common\include\Device6991\Command.h" />
-    <ClInclude Include="..\WizardFramework\Common\include\Device6991\CommandTypes.h" />
     <ClInclude Include="..\WizardFramework\Common\include\Device6991\Defines6991.h" />
     <QtMoc Include="..\WizardFramework\Common\include\Device6991\Device6991.h" />
     <ClInclude Include="..\WizardFramework\Common\include\Device6991\HardwareConnector6991.h" />
-    <ClInclude Include="..\WizardFramework\Common\include\Device6991\RegisterTypes.h" />
     <QtMoc Include="..\WizardFramework\Common\include\gui\EnumSelector.h" />
     <QtMoc Include="..\WizardFramework\Common\include\gui\TwoStateButton.h" />
+    <ClInclude Include="..\WizardFramework\Common\include\Device6991\ScpiIF6991Mock.h" />
     <ClInclude Include="..\WizardFramework\Common\include\DeviceIdentityResourcesIF.h" />
     <ClInclude Include="..\WizardFramework\Common\include\ErrorChecker.h" />
     <ClInclude Include="..\WizardFramework\Common\include\Exceptions.h" />
