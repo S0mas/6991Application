@@ -96,6 +96,9 @@
     <ClInclude Include="..\WizardFramework\Common\include\Device6991\ScpiIF6991Mock.h">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\WizardFramework\Common\include\ScpiIFVisa.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\WizardFramework\Common\include\AbstractDataResource.h">

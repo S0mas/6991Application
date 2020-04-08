@@ -150,6 +150,7 @@
     <QtMoc Include="..\WizardFramework\Common\include\UserActionRequestController.h" />
     <QtMoc Include="..\WizardFramework\Common\include\UserActionRequestSender.h" />
     <QtMoc Include="..\WizardFramework\Common\include\UserCommunicationObject.h" />
+    <ClInclude Include="..\WizardFramework\Common\include\ScpiIFVisa.h" />
     <ClInclude Include="..\WizardFramework\Mock\include\HardwareConnectorMock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
