@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QDebug>
-#include "../WizardFramework/Common/include/Device6991/gui/TestsView.h"
+#include "../WizardFramework/Common/include/Device6991/gui/TestsController.h"
 #include "../WizardFramework/Common/include/Device6991/gui/Controller6991.h"
 #include "../WizardFramework/Common/include/Device6991/gui/RegisterController.h"
 #include "../WizardFramework/Common/include/Device6991/Device6991.h"
@@ -26,6 +26,8 @@ int main(int argc, char *argv[]) {
 #ifdef MOCK
 	auto connector1 = new HardwareConnectorMock(connectorName1); 
 	auto connector2 = new HardwareConnectorMock(connectorName2);
+	QSettings().setValue("ip"+connectorName1, ip6991);
+	QSettings().setValue("ip"+connectorName2, ip6991);
 	auto scpiIF = new ScpiIF6991Mock;
 #elif
 	auto connector2 = new HardwareConnector6991(connectorName1);
@@ -41,7 +43,7 @@ int main(int argc, char *argv[]) {
 	auto controller6991_2 = new Controller6991(connector2, scpiIF, 2);
 	auto resgisterControllerFrontend = new RegisterControllerFrontend(connector1, scpiIF);
 	auto resgisterController6991 = new RegisterController6991(connector1, scpiIF);
-	auto testController = new TestsView(connector1, scpiIF);
+	auto testController = new TestsController(connector1, scpiIF);
 
 	controller6991->show();
 	controller6991_2->show();
