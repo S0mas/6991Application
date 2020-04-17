@@ -39,8 +39,8 @@ int main(int argc, char *argv[]) {
 
 	Device6991 dev("Device6111", connector1, scpiIF, 256);
 
-	auto controller6991 = new Controller6991(connector1, scpiIF, 1);
-	auto controller6991_2 = new Controller6991(connector2, scpiIF, 2);
+	auto controller6991 = new Controller6991(connector1, scpiIF);
+	auto controller6991_2 = new Controller6991(connector2, scpiIF);
 	auto resgisterControllerFrontend = new RegisterControllerFrontend(connector1, scpiIF);
 	auto resgisterController6991 = new RegisterController6991(connector1, scpiIF);
 	auto testController = new TestsController(connector1, scpiIF);
