@@ -4,6 +4,7 @@
 #include "../WizardFramework/Common/include/Device6991/gui/Controller6991.h"
 #include "../WizardFramework/Common/include/Device6991/gui/RegisterController.h"
 #include "../WizardFramework/Common/include/Device6991/Device6991.h"
+#include <QImage>
 
 #define MOCK // needs to be commented in real app
 
@@ -45,11 +46,23 @@ int main(int argc, char *argv[]) {
 	auto resgisterController6991 = new RegisterController6991(connector1, scpiIF);
 	auto testController = new TestsController(connector1, scpiIF);
 
-	controller6991->show();
+	auto w = new QWidget;
+	auto layout = new QHBoxLayout;
+	auto vlayout = new QVBoxLayout;
+
+	vlayout->addWidget(resgisterController6991);
+	vlayout->addWidget(resgisterControllerFrontend);
+	QImage bustecLogo("bustec.jpg");
+	auto imageWidget = new QLabel;
+	imageWidget->setPixmap(QPixmap::fromImage(bustecLogo));
+	vlayout->addWidget(imageWidget);
+
+	layout->addWidget(controller6991);
+	layout->addLayout(vlayout);
+	w->setLayout(layout);
+	
 	controller6991_2->show();
-	resgisterControllerFrontend->show();
-	resgisterController6991->show();
-	testController->show();
+	w->show();
 
 	return a.exec();
 }
