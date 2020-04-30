@@ -16,21 +16,14 @@ int main(int argc, char *argv[]) {
 	QCoreApplication::setApplicationName("6991_TEST");
 	//DONT CHANGE
 	
-	// CHANGE HERE
-	QString ip6991 = "192.168.168.126";		/// SET DEVICE IP HERE
-	FecIdType::Type fecId = FecIdType::_1;	/// SET FRONTEND CARD ID (SLOT) _1 OR _2 this test soft doesnt support both cards at same time (I can add second controller if you want)
-	// CHANGE HERE
-
 	//DONT CHANGE
 	QString connectorName1 = "connector";
-	QSettings settings;
-	settings.setValue("ip"+ connectorName1, ip6991);
 	auto connector1 = new HardwareConnector6991(connectorName1);
 	auto scpiIF = new ScpiIFVisa;
 	Device6991 dev("Device6132", connector1, scpiIF, 256);
 	dev.connect();
 	dev.enableScpiCommandsPrints(false);
-	Device6132 dev6132(fecId, &dev);	
+	Device6132 dev6132(connectorName1, FecIdType::_1, &dev);
 	StevesController ctrl(&dev6132);//Gui ctrl
 	ctrl.show();
 	//DONT CHANGE 

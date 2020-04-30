@@ -10,6 +10,7 @@
 #include <QTimer>
 #include <QMessageBox>
 #include <QLabel>
+#include <QLineEdit>
 #include "../WizardFramework/Common/include/Device6132.h"
 
 enum ConfigAction {
@@ -78,6 +79,18 @@ public:
 					startStopAcqButton_->setText("Continous Conversion");
 					measureButton_->setEnabled(true);
 					setterGroup_->setEnabled(true);
+				}
+			}
+		);
+
+		connect(this, &StevesController::stopMeasurement, 
+			[this]() { 
+				if (startStopAcqButton_->text() == "Stop") {
+					acqTimer_->stop();
+					startStopAcqButton_->setText("Continous Conversion");
+					measureButton_->setEnabled(true);
+					setterGroup_->setEnabled(true);
+		
 				}
 			}
 		);
@@ -202,11 +215,73 @@ public:
 		hlayout->addWidget(startStopAcqButton_);
 		contollerGroup->setLayout(hlayout);
 
+
+		hlayout = new QHBoxLayout;
+		auto fcIdLabel = new QLabel("Fec Id:");
+		auto idCombobox = new QComboBox;
+		idCombobox->addItem("1", FecIdType::_1);
+		idCombobox->addItem("2", FecIdType::_2);
+		hlayout->addWidget(fcIdLabel);
+		hlayout->addWidget(idCombobox);
+
+		auto vLayout = new QVBoxLayout;
+		vLayout->addLayout(hlayout);
+
+		hlayout = new QHBoxLayout;
+		auto connectButton = new QPushButton("Connect");
+		auto ipLabel = new QLabel("IP Address:");
+		auto lineEdit = new QLineEdit;
+		QSettings settings;
+		lineEdit->setText(settings.value("ip" + devIF_->connectorName(), "0.0.0.0").toString());
+
+		hlayout->addWidget(ipLabel);
+		hlayout->addWidget(lineEdit);
+		hlayout->addWidget(connectButton);
+		vLayout->addLayout(hlayout);
+
+		QObject::connect(lineEdit, &QLineEdit::editingFinished,
+			[this, lineEdit]() {
+				QSettings settings;
+				settings.setValue("ip" + devIF_->connectorName(), lineEdit->text());
+			}
+		);
+
+		QObject::connect(connectButton, &QPushButton::clicked,
+			[this, connectButton, devIF, idCombobox, statusGroup, contollerGroup]() {
+				connectButton->setText("Connecting...");
+				emit stopMeasurement();
+				devIF->setFcId(static_cast<FecIdType::Type>(idCombobox->currentData().toUInt()));
+				if (devIF->connect()) {
+					connectButton->setText("Connected - click to reconnect");
+					setterGroup_->setEnabled(true);
+					statusGroup->setEnabled(true);
+					contollerGroup->setEnabled(true);
+				}
+				else {
+					connectButton->setText("Failed - try again");
+					setterGroup_->setEnabled(false);
+					statusGroup->setEnabled(false);
+					contollerGroup->setEnabled(false);
+				}
+			}
+		);
+		auto connectWidgetGroup = new QGroupBox("Connection Controller");
+		connectWidgetGroup->setLayout(vLayout);
+		
+
 		auto layout = new QVBoxLayout;
+		layout->addWidget(connectWidgetGroup);
 		layout->addWidget(setterGroup_);
 		layout->addWidget(statusGroup);
 		layout->addWidget(contollerGroup);
 
+		setterGroup_->setEnabled(false);
+		statusGroup->setEnabled(false);
+		contollerGroup->setEnabled(false);
+
 		setLayout(layout);
 	}
+
+signals:
+	void stopMeasurement() const;
 };
