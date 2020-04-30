@@ -167,6 +167,15 @@
     <QtMoc Include="..\WizardFramework\Common\include\Device6991\gui\TestsController.h">
       <Filter>headers\gui</Filter>
     </QtMoc>
+    <QtMoc Include="..\WizardFramework\Common\include\Device6111.h">
+      <Filter>headers</Filter>
+    </QtMoc>
+    <QtMoc Include="..\WizardFramework\Common\include\Device6132.h">
+      <Filter>headers</Filter>
+    </QtMoc>
+    <QtMoc Include="StevesController.h">
+      <Filter>headers\gui</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="headers">
