@@ -50,15 +50,15 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QtInstall>QT_12_64</QtInstall>
+    <QtInstall>5.14_64</QtInstall>
     <QtModules>core;gui;network;widgets;concurrent</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <QtInstall>QT_12_64</QtInstall>
+    <QtInstall>5.14_64</QtInstall>
     <QtModules>core;gui;network;widgets;concurrent</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='REAL|x64'">
-    <QtInstall>QT_12_64</QtInstall>
+    <QtInstall>5.14_64</QtInstall>
     <QtModules>core;gui;network;widgets;concurrent</QtModules>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
