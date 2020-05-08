@@ -232,7 +232,7 @@ public:
 		auto ipLabel = new QLabel("IP Address:");
 		auto lineEdit = new QLineEdit;
 		QSettings settings;
-		lineEdit->setText(settings.value("ip" + devIF_->connectorName(), "0.0.0.0").toString());
+		lineEdit->setText(devIF_->parentDevice()->inputResources().back()->load());
 
 		hlayout->addWidget(ipLabel);
 		hlayout->addWidget(lineEdit);
@@ -241,17 +241,23 @@ public:
 
 		QObject::connect(lineEdit, &QLineEdit::editingFinished,
 			[this, lineEdit]() {
-				QSettings settings;
-				settings.setValue("ip" + devIF_->connectorName(), lineEdit->text());
+				devIF_->parentDevice()->inputResources().back()->setValue(lineEdit->text());
+				devIF_->parentDevice()->inputResources().back()->save();
 			}
 		);
 
 		QObject::connect(connectButton, &QPushButton::clicked,
-			[this, connectButton, devIF, idCombobox, statusGroup, contollerGroup]() {
+			[this, connectButton, idCombobox, statusGroup, contollerGroup]() {
 				connectButton->setText("Connecting...");
 				emit stopMeasurement();
-				devIF->setFcId(static_cast<FecIdType::Type>(idCombobox->currentData().toUInt()));
-				if (devIF->connect()) {
+				devIF_->setFcId(static_cast<FecIdType::Type>(idCombobox->currentData().toUInt()));
+				devIF_->connect();
+			}
+		);
+
+		QObject::connect(devIF_->parentDevice(), &AbstractDevice::connectionStatusChanged,
+			[this, connectButton, idCombobox, statusGroup, contollerGroup](QString const& name, bool const status) {
+				if (status) {
 					connectButton->setText("Connected - click to reconnect");
 					setterGroup_->setEnabled(true);
 					statusGroup->setEnabled(true);
@@ -265,6 +271,7 @@ public:
 				}
 			}
 		);
+
 		auto connectWidgetGroup = new QGroupBox("Connection Controller");
 		connectWidgetGroup->setLayout(vLayout);
 		

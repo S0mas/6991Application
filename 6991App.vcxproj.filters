@@ -49,6 +49,15 @@
     <ClCompile Include="..\WizardFramework\Common\src\Device6991\gui\TestsController.cpp">
       <Filter>sources\gui</Filter>
     </ClCompile>
+    <ClCompile Include="..\WizardFramework\Common\src\Device6991\ClTest.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\WizardFramework\Common\src\Device6991\DlTest.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\WizardFramework\Common\src\Device6991\FifoTest.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\WizardFramework\Common\include\ChannelsIF.h">
@@ -97,6 +106,18 @@
       <Filter>headers</Filter>
     </ClInclude>
     <ClInclude Include="..\WizardFramework\Common\include\ScpiIFVisa.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\WizardFramework\Common\include\Device6991\ClTest.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\WizardFramework\Common\include\Device6991\DlTest.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\WizardFramework\Common\include\Device6991\FifoTest.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\WizardFramework\Common\include\ResourceValidator.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -176,6 +197,21 @@
     <QtMoc Include="StevesController.h">
       <Filter>headers\gui</Filter>
     </QtMoc>
+    <QtMoc Include="..\WizardFramework\Common\include\gui\Controller6132.h">
+      <Filter>headers\gui</Filter>
+    </QtMoc>
+    <QtMoc Include="..\WizardFramework\Common\include\gui\ConnectController.h">
+      <Filter>headers\gui</Filter>
+    </QtMoc>
+    <QtMoc Include="..\WizardFramework\Common\include\gui\ChannelsGroupSelectionButton.h">
+      <Filter>headers\gui</Filter>
+    </QtMoc>
+    <QtMoc Include="..\WizardFramework\Common\include\gui\ChannelsSelectionView.h">
+      <Filter>headers\gui</Filter>
+    </QtMoc>
+    <QtMoc Include="..\WizardFramework\Common\include\gui\ChannelStatus.h">
+      <Filter>headers\gui</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="headers">
@@ -190,5 +226,15 @@
     <Filter Include="sources\gui">
       <UniqueIdentifier>{5f463a8e-3020-43f9-b91e-3b775e3c559b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\WizardFramework\Resources\qml.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

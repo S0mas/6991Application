@@ -17,21 +17,21 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D360A360-0047-4913-B84D-CBEB0D1B2DBA}</ProjectGuid>
     <Keyword>QtVS_v302</Keyword>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
     <ProjectName>6991App</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='REAL|x64'">
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
@@ -50,15 +50,15 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <QtInstall>QT_12_64</QtInstall>
+    <QtInstall>5.14_64</QtInstall>
     <QtModules>core;gui;network;widgets;concurrent</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <QtInstall>QT_12_64</QtInstall>
+    <QtInstall>5.14_64</QtInstall>
     <QtModules>core;gui;network;widgets;concurrent</QtModules>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='REAL|x64'">
-    <QtInstall>QT_12_64</QtInstall>
+    <QtInstall>5.14_64</QtInstall>
     <QtModules>core;gui;network;widgets;concurrent</QtModules>
   </PropertyGroup>
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
@@ -76,7 +76,7 @@
       <PreprocessorDefinitions>QWT_DLL;$(Qt_DEFINES_);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>ScpiInterpreter.lib;$(Qt_LIBS_);%(AdditionalDependencies)</AdditionalDependencies>
@@ -121,6 +121,9 @@
     <ClCompile Include="..\WizardFramework\Common\src\AbstractDevice.cpp" />
     <ClCompile Include="..\WizardFramework\Common\src\AbstractHardwareConnector.cpp" />
     <ClCompile Include="..\WizardFramework\Common\src\ChannelsIF.cpp" />
+    <ClCompile Include="..\WizardFramework\Common\src\Device6991\ClTest.cpp" />
+    <ClCompile Include="..\WizardFramework\Common\src\Device6991\DlTest.cpp" />
+    <ClCompile Include="..\WizardFramework\Common\src\Device6991\FifoTest.cpp" />
     <ClCompile Include="..\WizardFramework\Common\src\Device6991\gui\AcquisitionStartModeView.cpp" />
     <ClCompile Include="..\WizardFramework\Common\src\Device6991\gui\AcquisitionStopModeView.cpp" />
     <ClCompile Include="..\WizardFramework\Common\src\Device6991\gui\Controller6991.cpp" />
@@ -139,6 +142,9 @@
     <QtMoc Include="StevesController.h" />
     <QtMoc Include="..\WizardFramework\Common\include\Device6111.h" />
     <QtMoc Include="..\WizardFramework\Common\include\Device6132.h" />
+    <ClInclude Include="..\WizardFramework\Common\include\Device6991\ClTest.h" />
+    <ClInclude Include="..\WizardFramework\Common\include\Device6991\DlTest.h" />
+    <ClInclude Include="..\WizardFramework\Common\include\Device6991\FifoTest.h" />
     <ClInclude Include="..\WizardFramework\Common\include\Device6991\Registers6991.h" />
     <QtMoc Include="..\WizardFramework\Common\include\Device6991\gui\AcquisitionStartModeView.h" />
     <QtMoc Include="..\WizardFramework\Common\include\Device6991\gui\AcquisitionStopModeView.h" />
@@ -166,10 +172,16 @@
     <QtMoc Include="..\WizardFramework\Common\include\LoggingObject.h" />
     <QtMoc Include="..\WizardFramework\Common\include\PrintInterface.h" />
     <QtMoc Include="..\WizardFramework\Common\include\Promises.h" />
+    <QtMoc Include="..\WizardFramework\Common\include\gui\Controller6132.h" />
+    <QtMoc Include="..\WizardFramework\Common\include\gui\ConnectController.h" />
+    <QtMoc Include="..\WizardFramework\Common\include\gui\ChannelsGroupSelectionButton.h" />
+    <QtMoc Include="..\WizardFramework\Common\include\gui\ChannelsSelectionView.h" />
+    <QtMoc Include="..\WizardFramework\Common\include\gui\ChannelStatus.h" />
     <ClInclude Include="..\WizardFramework\Common\include\Resource.h" />
     <ClInclude Include="..\WizardFramework\Common\include\ResourceContentValidationStrategies.h" />
     <ClInclude Include="..\WizardFramework\Common\include\ResourceManagementStrategies.h" />
     <QtMoc Include="..\WizardFramework\Common\include\ScpiDevice.h" />
+    <ClInclude Include="..\WizardFramework\Common\include\ResourceValidator.h" />
     <ClInclude Include="..\WizardFramework\Common\include\ScpiIF.h" />
     <QtMoc Include="..\WizardFramework\Common\include\SmartEnum.h" />
     <QtMoc Include="..\WizardFramework\Common\include\UserActionRequestController.h" />
@@ -177,6 +189,9 @@
     <QtMoc Include="..\WizardFramework\Common\include\UserCommunicationObject.h" />
     <ClInclude Include="..\WizardFramework\Common\include\ScpiIFVisa.h" />
     <ClInclude Include="..\WizardFramework\Mock\include\HardwareConnectorMock.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\WizardFramework\Resources\qml.qrc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
